@@ -2,7 +2,7 @@ package pl.javastart.recipeapp.recipe;
 
 public enum RecipeCategory {
 
-    BREAKFAST("Śniadanie"), DINNER("Objad"), SUPPER("Kolacja"), SNACK("Przekąska");
+    BREAKFAST("Śniadanie"), DINNER("Obiad"), SUPPER("Kolacja"), SNACK("Przekąska");
 
     private final String description;
 
