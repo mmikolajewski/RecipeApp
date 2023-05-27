@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<h1 class="h1">NAJLEPIEJ OCENIANE</h1>
+<div>
+    <ul class="recipesList" >
+        <li class="recipeCard" th:each="recipe: ${recipes}">
+            <img class="recipeCard_img" th:src="${recipe.imageAddress}" />
+            <h2 class="recipeCard_title" th:text="|${recipe.name}|">Przepis 1</h2>
+            <p class="recipeCard_description" th:text="${recipe.description}">card destription</p>
+            <a class="like" th:href="|main/like/${recipe.id}|">Polub!</a>
+            <p class="recipeCard_description" th:text="|${recipe.likes} polubień|"><small >x likes</small></p>
+            <a class="link" th:href="|/recipe?id=${recipe.id}|">Zobacz</a></br>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

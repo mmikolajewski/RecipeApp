@@ -15,7 +15,7 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST)
     private List<Recipe> recipes = new ArrayList<>();
 
     public Author() {
@@ -64,11 +64,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", recipe=" + recipes +
-                '}';
+        return firstName + ' ' + lastName;
     }
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div>
+    <article>
+    <div class="jumbotron">
+        <h1 class="display-4 h1" th:text="|${recipe.name}|">Lorem ipsum nemipsum</h1>
+        <p class="text-center" th:text="|Szacowany czas przygotowania ${recipe.timing} minut|"></p>
+        <hr>
+        <p class="lead" th:text="${recipe.description}">Lorem ipsum descripsum</p>
+        <img class="img" th:src="${recipe.imageAddress}" height="500" width="200"/>
+        <p th:text="${recipe.text}">Lorem ispum textum</p>
+        <hr class="my-4">
+        <p class="lead">
+            <span th:if="${recipe.editTime == null}" th:text="|Dodano ${recipe.addTime.toString().replace('T', ' ')}|">Lorem ispum Datum></span>
+            <span th:unless="${recipe.editTime == null}" th:text="|Edytowano ${recipe.editTime.toString().replace('T', ' ')}|">Lorem ispum Datum</span>
+        </p>
+
+
+        </span>
+
+
+        <h5>Autor</h5>
+        <p th:text="${recipe.author}">Lorem ispum textum</p>
+        </p>
+        <td> <a th:href="|/edit?id=${recipe.id}|" >EDYTUJ</a> </td>
+        <td> <a th:href="|/delete?id=${recipe.id}|" >USUŃ</a> </td>
+    </div>
+    </article>
+</div>
+</body>
+</html>

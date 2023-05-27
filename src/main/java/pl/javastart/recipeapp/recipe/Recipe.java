@@ -3,6 +3,12 @@ package pl.javastart.recipeapp.recipe;
 import jakarta.persistence.*;
 import pl.javastart.recipeapp.author.Author;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 @Entity
 public class Recipe {
     @Id
@@ -10,11 +16,19 @@ public class Recipe {
     private Long id;
     private String name;
     private String description;
+    @Column(length = 4000)
     private String text;
     private int timing;
-    @Enumerated
+    private int likes;
+
+    private LocalDateTime addTime;
+    private LocalDateTime editTime;
+
+    @Lob
+    private File image;
+    @Enumerated(EnumType.STRING)
     private RecipeCategory category;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private RecipeDifficultyLevel difficultyLevel;
 
     @ManyToOne()
@@ -24,14 +38,60 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String name, String description, String text, int timing, RecipeCategory category, RecipeDifficultyLevel difficultyLevel, Author author) {
+    public Recipe(String name, String description, String text, int timing, int likes, File image, RecipeCategory category, RecipeDifficultyLevel difficultyLevel) {
         this.name = name;
         this.description = description;
         this.text = text;
         this.timing = timing;
+        this.likes = likes;
+        this.image = image;
         this.category = category;
         this.difficultyLevel = difficultyLevel;
-        this.author = author;
+        this.addTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    }
+
+    public LocalDateTime getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(LocalDateTime editTime) {
+        this.editTime = editTime;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
+    }
+
+    public void addAuthor(Author author) {
+        setAuthor(author);
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public File getImageAddress() {
+        return image;
+    }
+
+    public LocalDateTime getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(LocalDateTime addTime) {
+        this.addTime = addTime;
+    }
+
+    public void setImageAddress(File image) {
+        this.image = image;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public Long getId() {
