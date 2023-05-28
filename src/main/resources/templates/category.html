@@ -5,23 +5,25 @@
 <body>
 <div th:replace="fragments :: header"></div>
 <div style="margin: auto">
-    <h1 class="h1" th:text="${category.description}">nazwa kategorii</h1>
-    <hr>
-    <img class="img" th:src="${category.imageAddress}" alt="LogoCategory" width="pixels" h>
-    <hr>
-    <p class="text" th:text="${category.text}"></p>
+    <div style="margin-left: 200px; margin-right: 400px; margin-top: 20px" class="d-flex justify-content-center">
+        <img class="img" style="flex: 50% 0 1" th:src="${category.imageAddress}" alt="LogoCategory" width="pixels" h>
+        <div style="flex: 50% 0 1; justify-content: center">
+            <h1 class="h1" th:text="${category.nameInPL}">nazwa kategorii</h1>
+            <p class="text" th:text="${category.text}"></p>
+        </div>
+    </div>
     <hr>
 </div>
 
 <div>
     <ul class="recipesList" >
-        <li class="recipeCard" th:each="recipe: ${recipeList}">
+        <li class="recipeCard" th:each="recipe: ${recipes}">
             <img class="recipeCard_img" th:src="${recipe.imageAddress}" />
             <h2 class="recipeCard_title" th:text="|${recipe.name}|">Przepis 1</h2>
             <p class="recipeCard_description" th:text="${recipe.description}">card destription</p>
-            <a class="like" th:href="|main/like/${recipe.id}|">Polub!</a>
+            <a class="like" th:href="|@{/like/}${recipe.id}|">Polub!</a>
             <p class="recipeCard_description" th:text="|${recipe.likes} polubień|"><small >x likes</small></p>
-            <a class="link" th:href="|/recipe?id=${recipe.id}|">Zobacz</a></br>
+            <a class="link" th:href="|@{/recipe?id=}${recipe.id}|">Zobacz</a></br>
         </li>
     </ul>
 

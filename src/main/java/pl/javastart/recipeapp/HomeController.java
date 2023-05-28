@@ -1,4 +1,4 @@
-package pl.javastart.recipeapp.controllers;
+package pl.javastart.recipeapp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

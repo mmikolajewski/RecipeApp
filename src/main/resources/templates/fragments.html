@@ -8,23 +8,25 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/style.css"/>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
 <div th:fragment="header">
     <div class="mainHeader">
-        <h1 ><a href="/"><img src="cover-logo.png" alt="Logo" width="200" height="100"></a></h1>
+        <h1 ><a th:href="@{/}"><img th:src="@{cover-logo.png}" alt="Logo" width="200" height="100"></a></h1>
         <nav class="siteNavigation">
             <ul>
-                <li><a class="element1" href="/list">Lista przepisów</a></li>
-                <li><a class="element1" href="/add">Dodaj przepis</a></li>
+                <li><a class="element1" th:href="@{/list}">Wszystkie przepisy</a></li>
+                <li><a class="element1" th:href="@{/add}">Dodaj przepis</a></li>
                 <li class="nav-item dropdown">
                     <a class="element1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Kategorie &#9660;
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="nav-link active" style="color: black" th:each="category : ${T(pl.javastart.recipeapp.recipe.RecipeCategory).values()}"
-                           th:href="|/category?category=${category.name()}|" th:text="${category.description}">Rodzaj</a>
+                        <a class="nav-link active" style="color: black" th:href="@{/category?id=1}" >Śniadanie</a>
+                        <a class="nav-link active" style="color: black" th:href="@{/category?id=2}" >Objad</a>
+                        <a class="nav-link active" style="color: black" th:href="@{/category?id=3}" >Kolacja</a>
+                        <a class="nav-link active" style="color: black" th:href="@{/category?id=4}" >Przekąski</a>
                     </div>
                 </li>
             </ul>

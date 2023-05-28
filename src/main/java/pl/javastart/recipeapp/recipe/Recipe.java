@@ -1,10 +1,9 @@
 package pl.javastart.recipeapp.recipe;
 
 import jakarta.persistence.*;
-import pl.javastart.recipeapp.author.Author;
+import pl.javastart.recipeapp.category.Category;
+import pl.javastart.recipeapp.category.CategoryRepository;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,7 +15,7 @@ public class Recipe {
     private Long id;
     private String name;
     private String description;
-    @Column(length = 4000)
+    @Column(length = 10000)
     private String text;
     private int timing;
     private int likes;
@@ -24,74 +23,38 @@ public class Recipe {
     private LocalDateTime addTime;
     private LocalDateTime editTime;
 
+    private String firstAndLastNameOfAuthor;
+
     @Lob
-    private File image;
-    @Enumerated(EnumType.STRING)
-    private RecipeCategory category;
+    private String imageAddress;
     @Enumerated(EnumType.STRING)
     private RecipeDifficultyLevel difficultyLevel;
 
     @ManyToOne()
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String description, String text, int timing, int likes, File image, RecipeCategory category, RecipeDifficultyLevel difficultyLevel) {
+    public Recipe(String name, String description, String text, int timing, int likes, String imageAddress, RecipeDifficultyLevel difficultyLevel, String firstAndLastNameOfAuthor) {
         this.name = name;
         this.description = description;
         this.text = text;
         this.timing = timing;
         this.likes = likes;
-        this.image = image;
-        this.category = category;
-        this.difficultyLevel = difficultyLevel;
         this.addTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+        this.imageAddress = imageAddress;
+        this.difficultyLevel = difficultyLevel;
+        this.firstAndLastNameOfAuthor = firstAndLastNameOfAuthor;
     }
 
-    public LocalDateTime getEditTime() {
-        return editTime;
+    public String getFirstAndLastNameOfAuthor() {
+        return firstAndLastNameOfAuthor;
     }
 
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
-    }
-
-    public File getImage() {
-        return image;
-    }
-
-    public void setImage(File image) {
-        this.image = image;
-    }
-
-    public void addAuthor(Author author) {
-        setAuthor(author);
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public File getImageAddress() {
-        return image;
-    }
-
-    public LocalDateTime getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(LocalDateTime addTime) {
-        this.addTime = addTime;
-    }
-
-    public void setImageAddress(File image) {
-        this.image = image;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setFirstAndLastNameOfAuthor(String firstAndLastNameOfAuthor) {
+        this.firstAndLastNameOfAuthor = firstAndLastNameOfAuthor;
     }
 
     public Long getId() {
@@ -134,12 +97,36 @@ public class Recipe {
         this.timing = timing;
     }
 
-    public RecipeCategory getCategory() {
-        return category;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setCategory(RecipeCategory category) {
-        this.category = category;
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public LocalDateTime getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(LocalDateTime addTime) {
+        this.addTime = addTime;
+    }
+
+    public LocalDateTime getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(LocalDateTime editTime) {
+        this.editTime = editTime;
+    }
+
+    public String getImageAddress() {
+        return imageAddress;
+    }
+
+    public void setImageAddress(String imageAddress) {
+        this.imageAddress = imageAddress;
     }
 
     public RecipeDifficultyLevel getDifficultyLevel() {
@@ -150,13 +137,18 @@ public class Recipe {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setCategory(Category category) {
+        this.category = category;
     }
+
+    public void addCategory(Category category) {
+        setCategory(category);
+    }
+
 
     @Override
     public String toString() {
@@ -168,7 +160,6 @@ public class Recipe {
                 ", timing=" + timing +
                 ", category=" + category +
                 ", difficultyLevel=" + difficultyLevel +
-                ", author=" + author +
                 '}';
     }
 }

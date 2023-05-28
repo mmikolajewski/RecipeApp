@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
-    List<Recipe> findByCategory(RecipeCategory category);
-
     List<Recipe> findTop3ByOrderByLikesDesc();
     List<Recipe> findAll();
+
+    List<Recipe> findAllByCategoryId(Long id);
 }

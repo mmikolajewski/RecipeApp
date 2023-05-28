@@ -5,13 +5,17 @@
 <body>
 <div th:replace="fragments :: header"></div>
 <div>
-    <article>
-    <div class="jumbotron">
-        <h1 class="display-4 h1" th:text="|${recipe.name}|">Lorem ipsum nemipsum</h1>
-        <p class="text-center" th:text="|Szacowany czas przygotowania ${recipe.timing} minut|"></p>
+    <article style="margin: 50px">
+        <div style="margin: auto">
+            <div style="margin-left: 200px; margin-right: 400px;" class="d-flex justify-content-center">
+                <img class="img" style="flex: 50% 0 1" th:src="${recipe.imageAddress}" alt="LogoCategory" width="pixels" h>
+                <div style="flex: 50% 0 1; justify-content: center">
+                    <h1 class="display-4 h1" th:text="|${recipe.name}|">Lorem ipsum nemipsum</h1>
+                    <p class="text-center" th:text="|Szacowany czas przygotowania ${recipe.timing} minut, poziom trudności: ${recipe.difficultyLevel.description}|"></p>
+                    <p class="lead" th:text="${recipe.description}">Lorem ipsum descripsum</p>
+                </div>
+            </div>
         <hr>
-        <p class="lead" th:text="${recipe.description}">Lorem ipsum descripsum</p>
-        <img class="img" th:src="${recipe.imageAddress}" height="500" width="200"/>
         <p th:text="${recipe.text}">Lorem ispum textum</p>
         <hr class="my-4">
         <p class="lead">
@@ -24,10 +28,11 @@
 
 
         <h5>Autor</h5>
-        <p th:text="${recipe.author}">Lorem ispum textum</p>
+        <p th:text="${recipe.firstAndLastNameOfAuthor}">Lorem ispum textum</p>
         </p>
-        <td> <a th:href="|/edit?id=${recipe.id}|" >EDYTUJ</a> </td>
-        <td> <a th:href="|/delete?id=${recipe.id}|" >USUŃ</a> </td>
+        <a class="like" th:href="|@{/like/}${recipe.id}|">Polub przepis</a></br>
+        <td> <a th:href="|@{/add?id=}${recipe.id}|" >EDYTUJ</a> </td>
+        <td> <a th:href="|@{/delete?id=}${recipe.id}|" >USUŃ</a> </td>
     </div>
     </article>
 </div>

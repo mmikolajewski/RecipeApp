@@ -6,26 +6,46 @@
 <div th:replace="fragments :: header"></div>
 <main>
   <div class="container text-center mb-4 "  >
-    <form action="/add" method="post" th:object="${recipeToCreate}">
-      <a href="/" class="nav-link active text-danger"><-Powrót do strony głównej</a>
+    <form th:action="@{/add}" method="post" th:object="${recipeToCreate}">
 
       <div class="mb-3">
 
-        <label for="category" class="form-label">Kategoria</label>
-        <select class="form-select" id="category" th:field="*{category}">
-          <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
+        <input th:field="*{id}" hidden="">
+        <div class="mb-3">
+          <label for="difficultyLevel" class="form-label">Kategoria</label>
+          <select class="form-select" id="difficultyLevel" th:field="*{difficultyLevel}">
+            <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
 
-          <option th:each="category : ${T(pl.javastart.recipeapp.recipe.RecipeCategory).values()}"
-                  th:value="${category}"
-                  th:text="${category.description}">
-            nazwa_kategorii
-          </option>
-
-        </select>
+            <option th:each="difficultyLevel : ${T(pl.javastart.recipeapp.recipe.RecipeDifficultyLevel).values()}"
+                    th:value="${difficultyLevel}"
+                    th:text="${difficultyLevel.description}">
+              nazwa_kategorii
+            </option>
+          </select>
+        </div>
 
         <div class="mb-3">
-          <label for="image" class="form-label">Dodaj zdjęcie</label>
-          <input type="file" id="image" name="image" th:field="*{imageAddress}" >
+          <label for="category" class="form-label">Kategoria</label>
+          <select class="form-select" id="category" th:field="*{category}">
+            <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
+
+            <option th:each="category : ${categoryElement}"
+                    th:value="${category.id}"
+                    th:text="${category.nameInPL}">
+              nazwa_kategorii
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Autor</label>
+          <input placeholder="Imię Autora" type="text" class="form-control" id="Author" th:field="*{firstAndLastNameOfAuthor}">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="imageAddress" class="form-label">Dodaj adres zdjęcia</label>
+          <input type="text" id="imageAddress" name="imageAddress" th:field="*{imageAddress}" >
         </div>
 
         <div class="mb-3">
@@ -49,7 +69,7 @@
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="btn btn-primary mb-3">Dodaj</button>
+          <button type="submit" class="btn btn-primary mb-3">ZATWIERDŹ</button>
         </div>
       </div>
     </form>

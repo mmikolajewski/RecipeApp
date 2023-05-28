@@ -1,7 +1,7 @@
 package pl.javastart.recipeapp.recipe;
 
 public enum RecipeDifficultyLevel {
-    EASY("Podstawowe umiejętności"), MODERATE("Wymagane dodatkowe doświadczenie"), HARD("Stalowe nerwy");
+    EASY("Łatwy"), MODERATE("Średni"), HARD("Mistrzowski");
 
     private final String description;
 
