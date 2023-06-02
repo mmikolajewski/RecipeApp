@@ -5,34 +5,50 @@
 <body>
 <div th:replace="fragments :: header"></div>
 <div>
-    <article style="margin: 50px">
-        <div style="margin: auto">
-            <div style="margin-left: 200px; margin-right: 400px;" class="d-flex justify-content-center">
-                <img class="img" style="flex: 50% 0 1" th:src="${recipe.imageAddress}" alt="LogoCategory" width="pixels" h>
-                <div style="flex: 50% 0 1; justify-content: center">
-                    <h1 class="display-4 h1" th:text="|${recipe.name}|">Lorem ipsum nemipsum</h1>
-                    <p class="text-center" th:text="|Szacowany czas przygotowania ${recipe.timing} minut, poziom trudności: ${recipe.difficultyLevel.description}|"></p>
-                    <p class="lead" th:text="${recipe.description}">Lorem ipsum descripsum</p>
+    <article class="container m-4">
+        <div class="m-auto">
+            <div class="container my-5">
+                <div class="row mb-3">
+                    <div class="col-lg-6">
+                        <img class="w-100 shadow" th:src="${recipe.imageAddress}" />
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-2 mt-2">
+                            <div class="row text-center">
+                                <div class="col" >
+                                    <a  th:href="|@{/like/}${recipe.id}|"><span id="heart-icon" class="bi bi-heart col"></span></a>
+                                    <p class="text-centre" th:text="|${recipe.likes} os. Polub!|"></p>
+                                </div>
+                                <div class="col" >
+                                    <span id="clock-icon" class="bi bi-clock col"></span>
+                                    <p class="text-centre" th:text="|${recipe.timing} min.|"></p>
+                                </div>
+                                <div class="col">
+                                    <span id="chart-icon" class="bi bi-bar-chart"></span>
+                                    <p class="text-centre" th:text="|${recipe.difficultyLevel.description}|"></p>
+                                </div>
+                            </div>
+
+                            <h1 class="text-center" th:text="|${recipe.name}|">H1 Heading</h1>
+                            <p class="text-center" th:text="${recipe.description}">SHORT TEXT</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
         <hr>
         <p th:text="${recipe.text}">Lorem ispum textum</p>
         <hr class="my-4">
-        <p class="lead">
+        <p class="text-left">
             <span th:if="${recipe.editTime == null}" th:text="|Dodano ${recipe.addTime.toString().replace('T', ' ')}|">Lorem ispum Datum></span>
             <span th:unless="${recipe.editTime == null}" th:text="|Edytowano ${recipe.editTime.toString().replace('T', ' ')}|">Lorem ispum Datum</span>
         </p>
-
-
         </span>
-
-
         <h5>Autor</h5>
-        <p th:text="${recipe.firstAndLastNameOfAuthor}">Lorem ispum textum</p>
+        <p th:text="${recipe.author}">Lorem ispum textum</p>
         </p>
-        <a class="like" th:href="|@{/like/}${recipe.id}|">Polub przepis</a></br>
-        <td> <a th:href="|@{/add?id=}${recipe.id}|" >EDYTUJ</a> </td>
-        <td> <a th:href="|@{/delete?id=}${recipe.id}|" >USUŃ</a> </td>
+        <td> <a th:href="|@{/edit?id=}${recipe.id}|" >
+            <span class="bi bi-pen" id="pen-icon" ></span></a> </td>
+        <td> <a   th:href="|@{/delete?id=}${recipe.id}|" ><span id="boot-icon" class="bi bi-trash" ></span></a> </td>
+            </div>
     </div>
     </article>
 </div>

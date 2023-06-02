@@ -2,9 +2,6 @@ package pl.javastart.recipeapp.recipe;
 
 import jakarta.persistence.*;
 import pl.javastart.recipeapp.category.Category;
-import pl.javastart.recipeapp.category.CategoryRepository;
-
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -19,17 +16,13 @@ public class Recipe {
     private String text;
     private int timing;
     private int likes;
-
     private LocalDateTime addTime;
     private LocalDateTime editTime;
-
-    private String firstAndLastNameOfAuthor;
-
+    private String author;
     @Lob
     private String imageAddress;
     @Enumerated(EnumType.STRING)
     private RecipeDifficultyLevel difficultyLevel;
-
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
@@ -37,7 +30,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String name, String description, String text, int timing, int likes, String imageAddress, RecipeDifficultyLevel difficultyLevel, String firstAndLastNameOfAuthor) {
+    public Recipe(String name, String description, String text, int timing, int likes, String imageAddress, RecipeDifficultyLevel difficultyLevel, String author) {
         this.name = name;
         this.description = description;
         this.text = text;
@@ -46,15 +39,15 @@ public class Recipe {
         this.addTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         this.imageAddress = imageAddress;
         this.difficultyLevel = difficultyLevel;
-        this.firstAndLastNameOfAuthor = firstAndLastNameOfAuthor;
+        this.author = author;
     }
 
-    public String getFirstAndLastNameOfAuthor() {
-        return firstAndLastNameOfAuthor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setFirstAndLastNameOfAuthor(String firstAndLastNameOfAuthor) {
-        this.firstAndLastNameOfAuthor = firstAndLastNameOfAuthor;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public Long getId() {
@@ -148,7 +141,6 @@ public class Recipe {
     public void addCategory(Category category) {
         setCategory(category);
     }
-
 
     @Override
     public String toString() {

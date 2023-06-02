@@ -13,6 +13,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameInPL;
+    @Column(length = 500)
     private String text;
     private String imageAddress;
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)

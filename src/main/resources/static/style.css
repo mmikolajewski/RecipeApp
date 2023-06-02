@@ -19,19 +19,6 @@ main {
 .lead {
     text-align: center;
 }
-
-.like {
-    color: red;
-}
-
-.h1 {
-    text-align: center;
-    padding-top: 30px;
-}
-.text {
-    text-align: center;
-    padding-top: 30px;}
-
 .element1 {
     font-size: x-large;
     color: black;
@@ -111,4 +98,44 @@ main {
     max-width: 100%;
     max-height: 200px;
     object-fit: cover;
+}
+
+.how-img img {
+    width: 80%;
+}
+
+#boot-icon {
+    font-size: 40px;
+    color: rgb(165, 42, 42);
+}
+
+#pen-icon {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+#heart-icon {
+    font-size: 40px;
+    color: rgb(255, 0, 0);
+}
+#clock-icon {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+#chart-icon {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+.carousel-inner > img{
+    width:100%;
+    height:1px;
+}
+
+.fixed-ratio-resize {
+    height: 400px;
+    width: 700px;
+}
+
+.form {
+    margin: auto;
+    width: 50%;
 }

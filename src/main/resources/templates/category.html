@@ -4,29 +4,23 @@
 </head>
 <body>
 <div th:replace="fragments :: header"></div>
-<div style="margin: auto">
-    <div style="margin-left: 200px; margin-right: 400px; margin-top: 20px" class="d-flex justify-content-center">
-        <img class="img" style="flex: 50% 0 1" th:src="${category.imageAddress}" alt="LogoCategory" width="pixels" h>
-        <div style="flex: 50% 0 1; justify-content: center">
-            <h1 class="h1" th:text="${category.nameInPL}">nazwa kategorii</h1>
-            <p class="text" th:text="${category.text}"></p>
+<div th:class="container">
+    <div class="container my-5">
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <img class="w-100 shadow" th:src="${category.imageAddress}" />
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5 mt-4">
+                    <h1 th:text="${category.nameInPL}">H1 Heading</h1>
+                    <p class="lead" th:text="${category.text}">SHORT TEXT</p>
+                </div>
+            </div>
         </div>
-    </div>
     <hr>
+    <h1 class="mt-5 text-center">ZNAJDŹ COŚ DLA SIEBIE</h1>
+        <div th:replace="fragments :: list"></div>
 </div>
-
-<div>
-    <ul class="recipesList" >
-        <li class="recipeCard" th:each="recipe: ${recipes}">
-            <img class="recipeCard_img" th:src="${recipe.imageAddress}" />
-            <h2 class="recipeCard_title" th:text="|${recipe.name}|">Przepis 1</h2>
-            <p class="recipeCard_description" th:text="${recipe.description}">card destription</p>
-            <a class="like" th:href="|@{/like/}${recipe.id}|">Polub!</a>
-            <p class="recipeCard_description" th:text="|${recipe.likes} polubień|"><small >x likes</small></p>
-            <a class="link" th:href="|@{/recipe?id=}${recipe.id}|">Zobacz</a></br>
-        </li>
-    </ul>
-
 </div>
 </body>
 </html>

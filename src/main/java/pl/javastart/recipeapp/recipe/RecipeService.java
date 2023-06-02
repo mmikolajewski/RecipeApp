@@ -1,7 +1,7 @@
 package pl.javastart.recipeapp.recipe;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.recipeapp.category.Category;
 import pl.javastart.recipeapp.category.CategoryRepository;
 
@@ -28,55 +28,44 @@ public class RecipeService {
     public List<Recipe> findAll(){
         return recipeRepository.findAll();
     }
-    public Optional<Recipe> findById(Long id){
-        return recipeRepository.findById(id);
+
+    public Recipe findById(Long id){
+        return recipeRepository.findById(id).orElseThrow();
     }
 
     public List<Recipe> findAllByCategory(Long id){
         return recipeRepository.findAllByCategoryId(id);
     }
 
-    public String getLikeRecipe(Long id, String referer) {
-        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
-        if (optionalRecipe.isPresent()) {
-            Recipe recipe = optionalRecipe.get();
-            recipe.setLikes(recipe.getLikes() + 1);
-            recipeRepository.save(recipe);
-            return "redirect:" + referer;
-        } else {
-            return "redirect:/e";
-        }
+    @Transactional
+    public void likeRecipe(Long id) {
+        Recipe recipe = recipeRepository.findById(id).orElseThrow();
+        recipe.setLikes(recipe.getLikes() + 1);
     }
 
-    public String addAddTimeAndSave(Recipe recipe) {
+    public void addAddTimeAndSave(Recipe recipe) {
         recipe.setAddTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         recipeRepository.save(recipe);
-
-        return "redirect:/list";
     }
 
     public void deleteRecipeIfExist(Long id) {
-        Optional<Recipe> taskOptional = recipeRepository.findById(id);
-        if (taskOptional.isPresent()) {
-            Recipe recipe = taskOptional.get();
-            recipeRepository.delete(recipe);
-        }
+        Recipe recipe = recipeRepository.findById(id).orElseThrow();
+        recipeRepository.delete(recipe);
     }
 
-    public static Recipe editRecipeParameters(Recipe recipe, Optional<Recipe> returnedRecipe) {
-        Recipe recipe1 = returnedRecipe.get();
-        recipe1.setName(recipe.getName());
-        recipe1.setDescription(recipe.getDescription());
-        recipe1.setDifficultyLevel(recipe.getDifficultyLevel());
-        recipe1.setText(recipe.getText());
-        recipe1.setTiming(recipe.getTiming());
-        recipe1.setEditTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
-        return recipe1;
+    @Transactional
+    public void editRecipeParameters(Recipe recipe) {
+        Recipe recipeFromRepo = findById(recipe.getId());
+        recipeFromRepo.setName(recipe.getName());
+        recipeFromRepo.setAuthor(recipe.getAuthor());
+        recipeFromRepo.setDescription(recipe.getDescription());
+        recipeFromRepo.setDifficultyLevel(recipe.getDifficultyLevel());
+        recipeFromRepo.setText(recipe.getText());
+        recipeFromRepo.setTiming(recipe.getTiming());
+        recipeFromRepo.setImageAddress(recipe.getImageAddress());
+        recipeFromRepo.setEditTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
     }
 
-    public void save(Recipe recipe1) {
-        recipeRepository.save(recipe1);
-    }
 
     public Category findCategory(Long id) {
         Optional<Category> byId = categoryRepository.findById(id);
@@ -84,12 +73,5 @@ public class RecipeService {
     }
     public List<Category> findCategories() {
         return categoryRepository.findAll();
-    }
-
-    public void addCategoryAtrubiteAndRecipeList(Model model, Long id) {
-        List<Recipe> recipesByCategory = findAllByCategory(id);
-        Category category = findCategory(id);
-        model.addAttribute("category", category);
-        model.addAttribute("recipes", recipesByCategory);
     }
 }
