@@ -19,7 +19,6 @@ public class Recipe {
     private LocalDateTime addTime;
     private LocalDateTime editTime;
     private String author;
-    @Lob
     private String imageAddress;
     @Enumerated(EnumType.STRING)
     private RecipeDifficultyLevel difficultyLevel;
