@@ -18,11 +18,9 @@ import java.util.List;
 public class GlobalControllerAdvice {
 
     private CategoryRepository categoryRepository;
-    private RecipeRepository recipeRepository;
 
-    public GlobalControllerAdvice(CategoryRepository categoryRepository, RecipeRepository recipeRepository) {
+    public GlobalControllerAdvice(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.recipeRepository = recipeRepository;
     }
 
     @ModelAttribute("categories")

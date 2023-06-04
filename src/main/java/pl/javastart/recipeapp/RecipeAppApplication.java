@@ -8,7 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class RecipeAppApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(RecipeAppApplication.class, args);
+        SpringApplication.run(RecipeAppApplication.class, args);
     }
 }
 

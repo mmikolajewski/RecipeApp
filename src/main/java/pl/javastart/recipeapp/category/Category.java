@@ -16,7 +16,7 @@ public class Category {
     @Column(length = 500)
     private String text;
     private String imageAddress;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "category")
     private List<Recipe> recipes = new ArrayList<>();
 
     public Category() {

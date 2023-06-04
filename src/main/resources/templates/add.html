@@ -11,7 +11,7 @@
         <input th:field="*{id}" hidden="">
         <div class="mb-3">
           <label for="difficultyLevel" class="form-label">Poziom trudności</label>
-          <select class="form-select" id="difficultyLevel" th:field="*{difficultyLevel}">
+          <select id="difficultyLevel" th:field="*{difficultyLevel}">
             <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
             <option th:each="difficultyLevel : ${T(pl.javastart.recipeapp.recipe.RecipeDifficultyLevel).values()}"
                     th:value="${difficultyLevel}"

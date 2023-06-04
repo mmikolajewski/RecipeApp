@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.recipeapp.category.Category;
 import pl.javastart.recipeapp.category.CategoryRepository;
+import pl.javastart.recipeapp.category.CategoryService;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -14,11 +15,11 @@ import java.util.Optional;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
-    public RecipeService(RecipeRepository recipeRepository, CategoryRepository categoryRepository) {
+    public RecipeService(RecipeRepository recipeRepository, CategoryService categoryService) {
         this.recipeRepository = recipeRepository;
-        this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
     }
 
     public List<Recipe>find3MostLikeableRecipes() {
@@ -68,10 +69,9 @@ public class RecipeService {
 
 
     public Category findCategory(Long id) {
-        Optional<Category> byId = categoryRepository.findById(id);
-        return byId.orElseThrow();
+        return categoryService.findById(id);
     }
     public List<Category> findCategories() {
-        return categoryRepository.findAll();
+        return categoryService.findAll();
     }
 }

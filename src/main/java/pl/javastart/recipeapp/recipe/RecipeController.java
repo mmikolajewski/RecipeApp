@@ -23,7 +23,7 @@ public class RecipeController {
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String dataEntryForm(Model model) {
         Recipe recipe = new Recipe();
         model.addAttribute("categoryElement", recipeService.findCategories());
         model.addAttribute("recipeToCreate", recipe);
@@ -52,7 +52,7 @@ public class RecipeController {
     public String deleteRecipe(@RequestParam Long id) {
         recipeService.deleteRecipeIfExist(id);
         return "redirect:/";
-        }
+    }
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -67,7 +67,7 @@ public class RecipeController {
         Category category = recipeService.findCategory(id);
         model.addAttribute("category", category);
         model.addAttribute("recipes", recipesByCategory);
-        return "/category";
+        return "category";
     }
 
     @GetMapping("/like/{id}")
