@@ -3,13 +3,10 @@ package pl.javastart.recipeapp.recipe;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.recipeapp.category.Category;
-import pl.javastart.recipeapp.category.CategoryRepository;
 import pl.javastart.recipeapp.category.CategoryService;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RecipeService {

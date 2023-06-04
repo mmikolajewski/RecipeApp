@@ -1,15 +1,9 @@
 package pl.javastart.recipeapp;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.javastart.recipeapp.category.Category;
 import pl.javastart.recipeapp.category.CategoryRepository;
-import pl.javastart.recipeapp.recipe.Recipe;
-import pl.javastart.recipeapp.recipe.RecipeRepository;
 
 import java.util.List;
 
