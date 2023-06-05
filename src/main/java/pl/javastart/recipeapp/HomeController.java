@@ -2,7 +2,6 @@ package pl.javastart.recipeapp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.javastart.recipeapp.category.CategoryRepository;
 import pl.javastart.recipeapp.recipe.Recipe;
@@ -10,7 +9,7 @@ import pl.javastart.recipeapp.recipe.RecipeService;
 
 import java.util.List;
 
-@ControllerAdvice
+@Controller
 public class HomeController {
 
     private RecipeService recipeService;
