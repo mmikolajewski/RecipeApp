@@ -27,14 +27,14 @@ public class RecipeController {
         Recipe recipe = new Recipe();
         model.addAttribute("categoryElement", recipeService.findCategories());
         model.addAttribute("recipeToCreate", recipe);
-        return "add";
+        return "recipeForm";
     }
     @GetMapping("/edit")
     public String editForm(@RequestParam(required = false) Long id, Model model) {
         model.addAttribute("categoryElement", recipeService.findCategories());
         Recipe recipe = recipeService.findById(id);
         model.addAttribute("recipeToCreate", recipe);
-        return "add";
+        return "recipeForm";
     }
 
     @PostMapping("/save")

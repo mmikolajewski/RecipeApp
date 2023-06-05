@@ -10,7 +10,6 @@ import pl.javastart.recipeapp.recipe.RecipeService;
 
 import java.util.List;
 
-@Controller
 @ControllerAdvice
 public class HomeController {
 
