@@ -2,7 +2,6 @@ package pl.javastart.recipeapp.category;
 
 import jakarta.persistence.*;
 import pl.javastart.recipeapp.recipe.Recipe;
-
 import java.util.ArrayList;
 import java.util.List;
 
