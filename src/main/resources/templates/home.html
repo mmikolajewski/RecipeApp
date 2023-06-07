@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="w-50 p-4 container"  >
+    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" th:each="category : ${categories}" th:data-slide-to="${category.id}"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active" >
+                <img class="d-block fixed-ratio-resize"  src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2022/11/2602810-13-Best-Prepared-Meal-Delivery-Services-of-2022-Header-81b9bf.jpg?w=1155&h=1528" alt="First slide">
+            </div>
+            <div class="carousel-item" th:each="category : ${categories}">
+                <a th:href="|@{/category?id=}${category.id}|" ><img class="d-block fixed-ratio-resize"  th:src="${category.imageAddress}" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="p-3 mb-2 bg-dark text-white" >
+                        <h5 th:text="|${category.nameInPL.toUpperCase}?|">...</h5>
+                        <h5> KLIKNIJ I ZNAJDŹ COŚ DLA SIEBIE </h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<h1 class="text-center mt-5">NAJLEPIEJ OCENIANE</h1>
+<div th:replace="fragments :: list"></div>
+</body>
+</html>

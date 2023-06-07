@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<main>
+  <div class="container text-center form "  >
+    <form th:action="@{/save}" method="post" th:object="${recipeToCreate}">
+      <div class="mb-3">
+        <input th:field="*{id}" hidden="">
+        <div class="mb-3">
+          <label for="difficultyLevel" class="form-label">Poziom trudności</label>
+          <select id="difficultyLevel" th:field="*{difficultyLevel}">
+            <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
+            <option th:each="difficultyLevel : ${T(pl.javastart.recipeapp.recipe.RecipeDifficultyLevel).values()}"
+                    th:value="${difficultyLevel}"
+                    th:text="${difficultyLevel.description}">
+              nazwa_kategorii
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Typ posiłku</label>
+          <select class="form-select" id="category" th:field="*{category}">
+            <option value="" th:disabled="disabled" th:selected="selected">Brak</option>
+
+            <option th:each="category : ${categoryElement}"
+                    th:value="${category.id}"
+                    th:text="${category.nameInPL}">
+              nazwa_kategorii
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Autor</label>
+          <input placeholder="Autor" type="text" class="form-control" id="Author" th:field="*{author}"/>
+        </div>
+
+        <div class="mb-3">
+          <label for="imageAddress" class="form-label">Dodaj adres zdjęcia</label>
+          <input type="text" id="imageAddress" name="imageAddress" class="form-control" th:field="*{imageAddress}" />
+        </div>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Tytuł</label>
+          <input placeholder="Tytuł" type="text" class="form-control" id="title" th:field="*{name}"/>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Opis</label>
+          <input placeholder="Opis"  type="text" class="form-control" id="description" th:field="*{description}"/>
+        </div>
+
+        <div class="mb-3">
+          <label for="timing" class="form-label">Szacowany czas przygotowania</label>
+          <input type="number" class="form-control" id="timing" th:field="*{timing}"/>
+        </div>
+
+        <div class="mb-3">
+          <label for="priority" class="form-label">Przepis</label>
+          <textarea placeholder="Zacznij pisać" class="form-control" id="priority" th:field="*{text}"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary mb-3">ZATWIERDŹ</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+
+</body>
+</html>

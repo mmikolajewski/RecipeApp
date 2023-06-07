@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div th:class="container">
+    <div class="container my-5">
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <img class="w-100 shadow" th:src="${category.imageAddress}" />
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5 mt-4">
+                    <h1 th:text="${category.nameInPL}">H1 Heading</h1>
+                    <p class="lead" th:text="${category.text}">SHORT TEXT</p>
+                </div>
+            </div>
+        </div>
+    <hr>
+    <h1 class="mt-5 text-center">ZNAJDŹ COŚ DLA SIEBIE</h1>
+        <div th:replace="fragments :: list"></div>
+</div>
+</div>
+</body>
+</html>
